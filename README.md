@@ -1,7 +1,15 @@
 # ServiceNow Notes
 Feel free to ask Issues or push PRs
 
-## API
+## [Index](#index)
+- [API](#api)
+- [Common Global Objects](#common-global-objects)
+- [Roles](#roles)
+- [UI Actions](#ui-actions)
+- [Script Includes](#script-includes)
+- [Articles](#articles)
+
+## [API](#api)
 - [Client](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=client)
 - [Server](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=server)
 
@@ -11,10 +19,14 @@ Feel free to ask Issues or push PRs
 - `g_form.save()` save and reload form
 
 #### [GlideAjax](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideAjaxAPI)
+- [user object cheat
+  sheet](https://www.servicenowguru.com/scripting/user-object-cheat-sheet/)
 
 #### [GlideRecord](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideRecordScopedAPI)
+- [query cheat
+sheet](https://www.servicenowguru.com/scripting/gliderecord-query-cheat-sheet/)
 
-## Common global Objects
+## [Common global Objects](#common-global-objects)
 - `gs`, `system` [GlideSystem](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideSystemScopedAPI)
 
 - `current` Current [GlideRecord](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideRecordScopedAPI), (read, write). Only avaiable when writing business rules.
@@ -22,10 +34,10 @@ Feel free to ask Issues or push PRs
 - `previous` Previous
   [GlideRecord](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideRecordScopedAPI) (read). Only avaiable when writing business rules.
 
-## Roles
+## [Roles](#roles)
 - ITIL users for impersonation: User, Joe Employe, Beth Anglin (has some other roles such as catalog_manager)
 
-## UI Action
+## [UI Actions](#ui-actions)
 ### Conditions
 
 Are always evaluated server-side. Use `gs` and `current` to access user and
@@ -105,5 +117,9 @@ ToggleMovie.prototype = Object.extendsObject(AbstractAjaxProcessor, {
 ```
 
 
-## Script Includes
+## [Script Includes](#script-includes)
 - `action.setRedirectURL()`
+
+## [Articles](#articles)
+- [Client and server code in onde UI
+  Action](https://www.servicenowguru.com/system-ui/ui-actions-system-ui/client-server-code-ui-action/)
