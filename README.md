@@ -7,7 +7,9 @@ Feel free to ask Issues or push PRs
 - [Roles](#roles)
 - [UI Actions](#ui-actions)
 - [Script Includes](#script-includes)
+- [Tooling](#tooling)
 - [Articles](#articles)
+- [Blogs and Books](#resources)
 
 ## [API](#api)
 - [Client](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=client)
@@ -38,6 +40,7 @@ sheet](https://www.servicenowguru.com/scripting/gliderecord-query-cheat-sheet/)
 - ITIL users for impersonation: User, Joe Employe, Beth Anglin (has some other roles such as catalog_manager)
 
 ## [UI Actions](#ui-actions)
+
 ### Conditions
 
 Are always evaluated server-side. Use `gs` and `current` to access user and
@@ -120,6 +123,21 @@ ToggleMovie.prototype = Object.extendsObject(AbstractAjaxProcessor, {
 ## [Script Includes](#script-includes)
 - `action.setRedirectURL()`
 
+## [Tooling](#tooling)
+- [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome text
+  directly from atom. Useful when editing large scripts.
+
 ## [Articles](#articles)
-- [Client and server code in onde UI
+- [Client and server code in one UI
   Action](https://www.servicenowguru.com/system-ui/ui-actions-system-ui/client-server-code-ui-action/)
+- [Always use getters and
+  setters](http://snprotips.com/blog/2017/4/9/always-use-getters-and-setters)
+
+## [Blogs and Books](#resources)
+- [snprotips](http://snprotips.com/)
+- [service now guru](https://www.servicenowguru.com/)
+- [/r/servicenow](https://www.reddit.com/r/servicenow/)
+- [Mastering
+  ServiceNow](http://www.saraiva.com.br/mastering-servicenow-9476393.html)
+- [Learning
+  ServiceNow](https://www.amazon.com/Learning-ServiceNow-Tim-Woodruff/dp/1785883321) From snprotips guy.
