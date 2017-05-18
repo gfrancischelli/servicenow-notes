@@ -7,6 +7,7 @@ Feel free to ask Issues or push PRs
 - [Roles](#roles)
 - [UI Actions](#ui-actions)
 - [Script Includes](#script-includes)
+- [UI Pages & Macros](#ui-pages)
 - [Tooling](#tooling)
 - [Articles](#articles)
 - [Blogs and Books](#resources)
@@ -122,6 +123,26 @@ ToggleMovie.prototype = Object.extendsObject(AbstractAjaxProcessor, {
 
 ## [Script Includes](#script-includes)
 - `action.setRedirectURL()`
+
+## [UI Pages & Macros](#ui-pages)
+The Html in UI Pages is actually xml + jelly templating with extended functionality
+provided by servicenow. Macros are just jelly components. Jelly is evaluated
+inside the server therefore the server apis are available.
+
+```xml
+<j:set var="jvar_hello" value="Hello"/>
+
+<g:evaluate jelly="true">
+  var script_name = jelly.jelly_name + " Zeca Urubu"
+</g:evaluate>
+
+<p>${jvar_hello} ${name}</p>
+```
+
+The `evaluate` tag can access the Jelly variables. These are copied into the
+`jelly` Javascript object. The `script_name` js variable is then set. JEXL
+`${jvar_hello} ${name}` is used to output text and it has access to the js
+variable.
 
 ## [Tooling](#tooling)
 - [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome text
