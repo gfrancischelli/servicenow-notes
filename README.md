@@ -5,6 +5,7 @@ Feel free to ask Issues or push PRs
 - [API](#api)
 - [Common Global Objects](#common-global-objects)
 - [Roles](#roles)
+- [Jelly](#jelly)
 - [UI Actions](#ui-actions)
 - [Script Includes](#script-includes)
 - [UI Pages & Macros](#ui-pages)
@@ -40,6 +41,35 @@ sheet](https://www.servicenowguru.com/scripting/gliderecord-query-cheat-sheet/)
 
 ## [Roles](#roles)
 - ITIL users for impersonation: User, Joe Employe, Beth Anglin (has some other roles such as catalog_manager)
+
+## [Jelly](#jelly)
+Jelly is a tool for turning XML into executable code. Think of it as html with
+scripting and processing power. Some common tags:
+
+### `<g:evaluate>`
+
+Used to evaluate an expression written in Rhino
+JavaScript and sometimes to set a variable to the value of the expression.
+
+The last statement in the expression is the value the variable will contain.
+```xml
+<g2:evaluate var="jvar_page" jelly="true">
+     var page = "";
+     var pageTitle = "";
+     var pageGR = new GlideRecord("cmn_schedule_page");
+     pageGR.addQuery("type", jelly.jvar_type");
+     pageGR.query();
+     if (pageGR.next()) {
+        page = pageGR.getValue("sys_id");
+        pageTitle = pageGR.getDisplayValue();
+     }
+     page;
+</g2:evaluate>
+```
+```xml
+<g2:evaluate var="not_important" expression="sc_req_item.popCurrent()"/>
+```
+
 
 ## [UI Actions](#ui-actions)
 
