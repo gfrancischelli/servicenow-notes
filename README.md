@@ -9,6 +9,7 @@ Feel free to ask Issues or push PRs
 - [Script Includes](#script-includes)
 - [UI Pages & Macros](#ui-pages)
 - [Tooling](#tooling)
+- [Mail](#mail)
 - [Articles](#articles)
 - [Blogs and Books](#resources)
 
@@ -147,6 +148,19 @@ variable.
 ## [Tooling](#tooling)
 - [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome text
   directly from atom. Useful when editing large scripts.
+
+## [Mail](#mail)
+- [Example scripting for email
+  notifications](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/server-scripting/reference/r_ExScptEmlNtfn.html)
+- [Mail script API](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/server-scripting/reference/r_MailScriptAPI.html) i.e
+
+  `email.setFrom(String: address)` override the sender address
+  
+  `email.setSubject(String: subject)` override the subject of the message
+
+- Create mail scripts in **System Policy** > **Email** > **Notification Email
+  Script** and refer to them by using `${mail_script:script name}` in the script
+  field
 
 ## [Articles](#articles)
 - [Client and server code in one UI
