@@ -9,12 +9,12 @@ Feel free to ask Issues or push PRs
 - [UI Actions](#ui-actions) `sys_ui_action`
 - [Script Includes](#script-includes) `sys_script_include`
 - [UI Pages & Macros](#ui-pages) `sys_ui_page`
-- [Tooling](#tooling)
 - [Business Rules] `sys_script`
 - [General UI](#general-ui)
   - [Dashboards](#dashboards)
 - [Mail](#mail)
   - [Event based email notifications](#event-mail)
+- [Tooling](#tooling)
 - [Articles](#articles)
 - [Blogs and Books](#resources)
 
@@ -195,10 +195,6 @@ var some_value = "outside scope";
 })(some_value);
 ```
 
-## [Tooling](#tooling)
-- [Servicenow Utils](https://chrome.google.com/webstore/detail/servicenow-utils/jgaodbdddndbaijmcljdbglhpdhnjobg) *Amazing* chrome extension.
-- [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome textareas directly from atom. Useful when editing large scripts.
-
 ## [General UI](#general-ui)
 - [Creating new homepages](http://wiki.servicenow.com/index.php?title=Creating_New_Homepages#gsc.tab=0)
 
@@ -232,6 +228,17 @@ var some_value = "outside scope";
 4. Send when -> event is fired
 5. Make sure to check `Send to event creator` to true when testing
 6. profit
+
+## [Tooling](#tooling)
+### Chrome extensions
+| Name  |   Description |
+| --------   | ----------    |
+|[Servicenow Utils](https://chrome.google.com/webstore/detail/servicenow-utils/jgaodbdddndbaijmcljdbglhpdhnjobg)  | Query templates, save with `<c-s>`, file sync :heart:|
+|[Prettier JS](https://chrome.google.com/webstore/detail/prettier-js/fcdlmdpongmamnibeohhniinfgmnhkob)  | Chrome extension. Beautifully format textareas js code with [prettier](https://github.com/prettier/prettier) |
+|[atomic chrome](https://atom.io/packages/atomic-chrome) |Edit chrome textareas directly from atom. Useful when editing large scripts.  |
+
+ 
+ 
 
 ## [Articles](#articles)
 - [Client and server code in one UI
