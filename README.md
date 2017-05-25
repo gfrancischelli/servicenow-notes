@@ -175,6 +175,21 @@ The `evaluate` tag can access the Jelly variables. These are copied into the
 `${jvar_hello} ${name}` is used to output text and it has access to the js
 variable.
 
+### Notes on global variable leaking
+Do not forget to choose unique ids for the css selectors.
+
+Prevent global variable leaking with [IIFEs](http://benalman.com/news/2010/11/immediately-invoked-function-expression/):
+```javascript
+var some_value = "outside scope";
+
+(function(x) {
+  "use strict";
+  // code goes here
+  
+  console.log(x) // "outside scope";
+})(some_value);
+```
+
 ## [Tooling](#tooling)
 - [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome text
   directly from atom. Useful when editing large scripts.
