@@ -6,16 +6,20 @@ Feel free to ask Issues or push PRs
 - [Common Global Objects](#common-global-objects)
 - [Roles](#roles)
 - [Jelly](#jelly)
-- [UI Actions](#ui-actions)
-- [Script Includes](#script-includes)
-- [UI Pages & Macros](#ui-pages)
+- [UI Actions](#ui-actions) `sys_ui_action`
+- [Script Includes](#script-includes) `sys_script_include`
+- [UI Pages & Macros](#ui-pages) `sys_ui_page`
 - [Tooling](#tooling)
+- [Business Rules] `sys_script`
+- [General UI](#general-ui)
+  - [Dashboards](#dashboards)
 - [Mail](#mail)
   - [Event based email notifications](#event-mail)
 - [Articles](#articles)
 - [Blogs and Books](#resources)
 
 ## [API](#api)
+- [overview](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/general-scripting/reference/r_GlideClassOverview.html)
 - [Client](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=client)
 - [Server](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=server)
 
@@ -192,12 +196,18 @@ var some_value = "outside scope";
 ```
 
 ## [Tooling](#tooling)
-- [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome text
-  directly from atom. Useful when editing large scripts.
+- [Servicenow Utils](https://chrome.google.com/webstore/detail/servicenow-utils/jgaodbdddndbaijmcljdbglhpdhnjobg) *Amazing* chrome extension.
+- [atomic chrome](https://atom.io/packages/atomic-chrome) Edit chrome textareas directly from atom. Useful when editing large scripts.
 
-## [Mail](#mail)
-- [Example scripting for email
-  notifications](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/server-scripting/reference/r_ExScptEmlNtfn.html)
+## [General UI](#general-ui)
+- [Creating new homepages](http://wiki.servicenow.com/index.php?title=Creating_New_Homepages#gsc.tab=0)
+
+### [DashBoards](#dashboards)
+- [Creating Dashboards](http://wiki.servicenow.com/index.php?title=Creating_Performance_Analytics_Dashboards#gsc.tab=0)
+
+## [Mail](#mail) 
+`sys_email`
+- [Example scripting for email notifications](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/server-scripting/reference/r_ExScptEmlNtfn.html)
 - [Mail script API](https://docs.servicenow.com/bundle/istanbul-servicenow-platform/page/script/server-scripting/reference/r_MailScriptAPI.html) i.e
 
   `email.setFrom(String: address)` override the sender address
@@ -228,6 +238,7 @@ var some_value = "outside scope";
   Action](https://www.servicenowguru.com/system-ui/ui-actions-system-ui/client-server-code-ui-action/)
 - [Always use getters and
   setters](http://snprotips.com/blog/2017/4/9/always-use-getters-and-setters)
+- [Building custom charts and reports](https://codecreative.io/servicenow/how-to-build-custom-charts-and-reports)
 
 ## [Blogs and Books](#resources)
 - [snprotips](http://snprotips.com/)
