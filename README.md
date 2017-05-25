@@ -236,8 +236,20 @@ var some_value = "outside scope";
 |[Servicenow Utils](https://chrome.google.com/webstore/detail/servicenow-utils/jgaodbdddndbaijmcljdbglhpdhnjobg)  | Query templates, save with `<c-s>`, file sync :heart:|
 |[Prettier JS](https://chrome.google.com/webstore/detail/prettier-js/fcdlmdpongmamnibeohhniinfgmnhkob)  | Chrome extension. Beautifully format textareas js code with [prettier](https://github.com/prettier/prettier) |
 |[atomic chrome](https://atom.io/packages/atomic-chrome) |Edit chrome textareas directly from atom. Useful when editing large scripts.  |
-
+| [Styler](https://chrome.google.com/webstore/detail/styler/bogdgcfoocbajfkjjolkmcdcnnellpkb) | Run custom css and javascript in web pages. See why below |
+| [wasavi](https://chrome.google.com/webstore/detail/wasavi/dgogifpkoilgiofhhhodbodcfgomelhe) |  Transforms textarea element of any page into a VI editor |
  
+### Tips and tricks
+
+**Increasing servicenow text editor width**:
+
+```css
+/* Add the following css to styler (chrome extension) */
+.col-xs-10.col-md-9.col-lg-8.form-field.input_controls,
+.col-xs-10.col-md-9.col-lg-8.form-field.input_controls {
+	width: 100%;
+}
+```
  
 
 ## [Articles](#articles)
