@@ -11,6 +11,7 @@ Feel free to ask Issues or push PRs
 - [UI Pages & Macros](#ui-pages)
 - [Tooling](#tooling)
 - [Mail](#mail)
+  - [Event based email notifications](#event-mail)
 - [Articles](#articles)
 - [Blogs and Books](#resources)
 
@@ -206,6 +207,21 @@ var some_value = "outside scope";
 - Create mail scripts in **System Policy** > **Email** > **Notification Email
   Script** and refer to them by using `${mail_script:script name}` in the script
   field
+
+### [Enabling the email client](#email-client)
+1. **System Definition** > **Dictionary**
+2. Find the record `u_maintenance` that does not have an entry in the **Column
+   name** field
+3. Right click > **Advanced View**, insert `email_client` in the **Attributes**
+   field
+
+### [Event based email notifications](#event-email)
+1. Create the event in **System Policy** > **Events** > **Registry** `sysevent_register.do`
+2. **System Notification** > **Email** > **Notifications**, right-click >
+3. **Advanced View**
+4. Send when -> event is fired
+5. Make sure to check `Send to event creator` to true when testing
+6. profit
 
 ## [Articles](#articles)
 - [Client and server code in one UI
