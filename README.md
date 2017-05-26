@@ -4,14 +4,16 @@ Feel free to ask Issues or push PRs
 ## [Index](#index)
 - [API](#api)
 - [Common Global Objects](#common-global-objects)
-- [Roles](#roles)
-- [Jelly](#jelly)
-- [UI Actions](#ui-actions) `sys_ui_action`
-- [Script Includes](#script-includes) `sys_script_include`
-- [UI Pages & Macros](#ui-pages) `sys_ui_page`
-- [Business Rules] `sys_script`
+- [Client Scripting](#client-scripting)
+  - [UI Pages & Macros](#ui-pages) `sys_ui_page`
+  - [UI Actions](#ui-actions) `sys_ui_action`
+- [Server Scripting](#server)
+  - [Script Includes](#script-includes) `sys_script_include`
+  - [Business Rules](#business-rules) `sys_script`
 - [General UI](#general-ui)
+  - [Jelly](#jelly)
   - [Dashboards](#dashboards)
+- [Roles](#roles)
 - [Mail](#mail)
   - [Event based email notifications](#event-mail)
 - [Tooling](#tooling)
@@ -44,46 +46,58 @@ sheet](https://www.servicenowguru.com/scripting/gliderecord-query-cheat-sheet/)
 - `previous` Previous
   [GlideRecord](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideRecordScopedAPI) (read). Only avaiable when writing business rules.
 
-## [Roles](#roles)
-- ITIL users for impersonation: User, Joe Employe, Beth Anglin (has some other roles such as catalog_manager)
+## [Client Scripting](#client-scripting])
 
-## [Jelly](#jelly)
-Jelly is a tool for turning XML into executable code. Think of it as html with
-scripting and processing power. Some common tags:
+**Tips, tricks and [ best practices
+](http://wiki.servicenow.com/index.php?title=Client_Script_Best_Practices#Example:_g_scratchpad&gsc.tab=0)**
 
-### `<g:evaluate>`
+- `g_form.setValue()` Prevent an additional ajax call that will affect
+  performance calling the function always with the 3 arguments: `fieldName`,
+  `value`, `displayName`. Without `displayName` the function will have to ask
+  the server which value should be displayed.
 
-Used to evaluate an expression written in Rhino
-JavaScript and sometimes to set a variable to the value of the expression.
+### [UI Pages & Macros](#ui-pages)
+The Html in UI Pages is actually xml + jelly templating with extended functionality
+provided by servicenow. Macros are just jelly components. Jelly is evaluated
+inside the server therefore the server apis are available.
 
-The last statement in the expression is the value the variable will contain.
 ```xml
-<g2:evaluate var="jvar_page" jelly="true">
-     var page = "";
-     var pageTitle = "";
-     var pageGR = new GlideRecord("cmn_schedule_page");
-     pageGR.addQuery("type", jelly.jvar_type");
-     pageGR.query();
-     if (pageGR.next()) {
-        page = pageGR.getValue("sys_id");
-        pageTitle = pageGR.getDisplayValue();
-     }
-     page;
-</g2:evaluate>
-```
-```xml
-<g2:evaluate var="not_important" expression="sc_req_item.popCurrent()"/>
+<j:set var="jvar_hello" value="Hello"/>
+
+<g:evaluate jelly="true">
+  var script_name = jelly.jelly_name + " Zeca Urubu"
+</g:evaluate>
+
+<p>${jvar_hello} ${name}</p>
 ```
 
+The `evaluate` tag can access the Jelly variables. These are copied into the
+`jelly` Javascript object. The `script_name` js variable is then set. JEXL
+`${jvar_hello} ${name}` is used to output text and it has access to the js
+variable.
 
-## [UI Actions](#ui-actions)
+#### Notes on global variable leaking
+Do not forget to choose unique ids for the css selectors.
 
-### Conditions
+Prevent global variable leaking with [IIFEs](http://benalman.com/news/2010/11/immediately-invoked-function-expression/):
+```javascript
+var some_value = "outside scope";
+
+(function(x) {
+  "use strict";
+  // code goes here
+  
+  console.log(x) // "outside scope";
+})(some_value);
+```
+### [UI Actions](#ui-actions)
+
+#### Conditions
 
 Are always evaluated server-side. Use `gs` and `current` to access user and
 current record data.
 
-### Scripts
+#### Scripts
 
 Use
 [GlideAjax](https://developer.servicenow.com/app.do#!/api_doc?v=istanbul&id=c_GlideAjaxAPI) to perform asynchronous requests.
@@ -155,48 +169,50 @@ ToggleMovie.prototype = Object.extendsObject(AbstractAjaxProcessor, {
   type: "ToggleMovie"
 });
 ```
+## [Server Scripting](#server-scripting)
 
-
-## [Script Includes](#script-includes)
+### [Script Includes](#script-includes)
 - `action.setRedirectURL()`
 
-## [UI Pages & Macros](#ui-pages)
-The Html in UI Pages is actually xml + jelly templating with extended functionality
-provided by servicenow. Macros are just jelly components. Jelly is evaluated
-inside the server therefore the server apis are available.
+### [Business Rules](#business-rules)
 
-```xml
-<j:set var="jvar_hello" value="Hello"/>
+## [Roles](#roles)
+- ITIL users for impersonation: User, Joe Employe, Beth Anglin (has some other roles such as catalog_manager)
 
-<g:evaluate jelly="true">
-  var script_name = jelly.jelly_name + " Zeca Urubu"
-</g:evaluate>
 
-<p>${jvar_hello} ${name}</p>
-```
 
-The `evaluate` tag can access the Jelly variables. These are copied into the
-`jelly` Javascript object. The `script_name` js variable is then set. JEXL
-`${jvar_hello} ${name}` is used to output text and it has access to the js
-variable.
-
-### Notes on global variable leaking
-Do not forget to choose unique ids for the css selectors.
-
-Prevent global variable leaking with [IIFEs](http://benalman.com/news/2010/11/immediately-invoked-function-expression/):
-```javascript
-var some_value = "outside scope";
-
-(function(x) {
-  "use strict";
-  // code goes here
-  
-  console.log(x) // "outside scope";
-})(some_value);
-```
 
 ## [General UI](#general-ui)
 - [Creating new homepages](http://wiki.servicenow.com/index.php?title=Creating_New_Homepages#gsc.tab=0)
+
+### [Jelly](#jelly)
+Jelly is a tool for turning XML into executable code. Think of it as html with
+scripting and processing power. Some common tags:
+
+#### `<g:evaluate>`
+
+Used to evaluate an expression written in Rhino
+JavaScript and sometimes to set a variable to the value of the expression.
+
+The last statement in the expression is the value the variable will contain.
+```xml
+<g2:evaluate var="jvar_page" jelly="true">
+     var page = "";
+     var pageTitle = "";
+     var pageGR = new GlideRecord("cmn_schedule_page");
+     pageGR.addQuery("type", jelly.jvar_type");
+     pageGR.query();
+     if (pageGR.next()) {
+        page = pageGR.getValue("sys_id");
+        pageTitle = pageGR.getDisplayValue();
+     }
+     page;
+</g2:evaluate>
+```
+```xml
+<g2:evaluate var="not_important" expression="sc_req_item.popCurrent()"/>
+```
+
 
 ### [DashBoards](#dashboards)
 - [Creating Dashboards](http://wiki.servicenow.com/index.php?title=Creating_Performance_Analytics_Dashboards#gsc.tab=0)
